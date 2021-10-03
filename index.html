@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
 
 </head>
@@ -49,7 +50,7 @@
             <h2 class="title">About me</h2>
             <div class="about-content">
                 <div class="column left">
-                    <img src="images/profile-1.jpeg" alt="">
+                    <img src="images/prasad.jpg" alt="">
                 </div>
                 <div class="column right">
                     <div class="text">I'm Prasad and I'm a <span class="typing-2"></span></div>
@@ -144,7 +145,7 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                    <form action="mail.php" method="POST">
+                    <form action="javascript:sendmail()" method="POST">
                         <div class="fields">
                             <div class="field name">
                                 <input type="text" name="name" placeholder="Name" required>
@@ -174,5 +175,43 @@
     </footer>
 
     <script src="script.js"></script>
+
+    
 </body>
+
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+
+<script>
+    function sendmail(){
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var subject = $('#sub').val();
+        var message = $('#msg').val();
+
+        var Body='Name: '+name+'<br>Email: '+email+'<br>Subject: '+subject+'<br>Message: ' +message;
+    }
+    Email.send({
+        Host : "smtp.gmail.com",
+        Username : "firstwebpage44@gmail.com",
+        Password : "Dontcopyitplzz",
+        To : '12prasadmudhol@gmail.com',
+        From : "firstwebpage44@gmail.com",
+        Subject : "New mail Webpage form From:"+name,
+        Body : Body
+}).then(
+    message =>{
+        if(message=='OK'){
+            alert("Thank You!!! Successfully sended mail");
+            }
+            else{
+                console.error (message);
+                alert('Sorry something is wrong,Please try again later')
+            }
+
+
+        
+    }
+);
+</script>
+
 </html>

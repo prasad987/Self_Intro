@@ -185,7 +185,7 @@ section .title::after{
 }
 .home .home-content .text-2{
     font-size: 75px;
-    font-weight: 500;
+    font-weight: 400;
     margin-left: -3px;
 }
 .home .home-content .text-3{
@@ -222,7 +222,7 @@ section .title::after{
 }
 .about .about-content .left img{
     height: 400px;
-    width: 400px;
+    width: 350px;
     object-fit: cover;
     border-radius: 6px;
 }
@@ -556,7 +556,7 @@ footer span a:hover{
 @media (max-width: 1104px) {
     .about .about-content .left img{
         height: 350px;
-        width: 350px;
+        width: 300px;
     }
 }
 
