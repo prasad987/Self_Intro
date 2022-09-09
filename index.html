@@ -38,9 +38,6 @@
 
     <!-- home section start -->
     <section class="home" id="home">
-        <div class="bottom-right">
-            <img src="images/b.png" alt="" style="width:100%;" height="500px">
-        </div>
         <div class="max-width">
             <div class="home-content">
                 <div class="text-1">Hello, my name is</div>
@@ -246,7 +243,7 @@
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                    <form action="javascript:sendmail()" method="POST">
+                    <form name="submit-to-google-sheet">
                         <div class="fields">
                             <div class="field name">
                                 <input type="text" name="Name" id="Name" placeholder="Name" required>
@@ -283,34 +280,19 @@
    
 
 
-        <script>
-            function sendmail() {
-                var name = $('#Name').val();
-                var email = $('#email').val();
-                var subject = $('#sub').val();
-                var message = $('#msg').val();
+    
 
-                var body = 'Name: ' + name + '<br>Email: ' + email + '<br>Subject: ' + subject + '<br>Message: ' + message;
-            
-                Email.send({
-                    SecureToken: "544e5767-c2c4-410c-9533-f7761c712037",
-                    To: '12prasadmudhol@gmail.com',
-                    From: "webmailer64@gmail.com",
-                    Subject: "Contact us from:"+name,
-                    Body: body
-                }).then(
-                    message => {
-                        if (message == "OK") {
-                            alert("Thank You!!! Successfully sended mail");
-                        }
-                        else {
-                            console.error(message);
-                            alert('Sorry something is wrong,Please try again later')
-                        }
-                    }
-                );
-            }
-        </script>
+    <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxiDfgRW2-kCrJtn5n0HyEYlTbV5Vdxcqz0aVmYNqv3S8v9bzH3K5uJrv6q3yewgOz-Vg/exec'
+            const form = document.forms['submit-to-google-sheet']
+        
+            form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+            })
+     </script>
 
 
 

@@ -200,19 +200,13 @@ section .title::after {
 
 .home {
     display: flex;
-    background: url("images/b2.jpg") no-repeat center;
+    background: url("images/images\ -\ 2022-09-09T195110.152.jpeg") no-repeat center;
     height: 100vh;
     color: #fff;
     min-height: 500px;
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Ubuntu', sans-serif;
-}
-
-.bottom-right {
-    position: absolute;
-    bottom: 0px;
-    right: 100px;
 }
 
 .home .max-width {
