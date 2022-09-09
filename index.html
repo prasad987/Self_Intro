@@ -259,7 +259,7 @@
                             <textarea cols="30" rows="10" name="msg" id="msg" placeholder="Message.." required></textarea>
                         </div>
                         <div class="button-area">
-                            <button type="submit">dont Send message</button>
+                            <button type="submit">Send message</button>
                         </div>
                     </form>
                     <span id="sendmsg"></span>
@@ -276,32 +276,25 @@
 
     <script src="script.js" ></script>
 
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-
-   
-
-
-    
-
     <script>
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbxiDfgRW2-kCrJtn5n0HyEYlTbV5Vdxcqz0aVmYNqv3S8v9bzH3K5uJrv6q3yewgOz-Vg/exec'
-            const form = document.forms['submit-to-google-sheet']
-            const sendmsg = document.getElementById("sendmsg")
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxiDfgRW2-kCrJtn5n0HyEYlTbV5Vdxcqz0aVmYNqv3S8v9bzH3K5uJrv6q3yewgOz-Vg/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const sendmsg = document.getElementById("sendmsg")
         
-            form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    sendmsg.innerHTML = "Message Sent Successfully"
-                    setTimeout(function() {
-                        sendmsg.innerHTML = ""
-                    },5000)
-                    form.reset()
-                })
-                .catch(error => console.error('Error!', error.sendmsg))
-            })
+        form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            sendmsg.innerHTML = "Message Sent Successfully"
+            setTimeout( function() {
+                sendmsg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.sendmsg))
+    })
 
-     </script>
+    </script>
 
 
 
