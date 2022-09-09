@@ -818,3 +818,9 @@ footer span a:hover {
         line-height: 38px;
     }
 }
+
+#sendmsg {
+    color: darkgreen;
+    margin-top: 10px;
+    display: block;
+}
