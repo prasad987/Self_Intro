@@ -13,6 +13,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
+    <script src="https://kit.fontawesome.com/3a3e121ecf.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -259,7 +261,7 @@
                             <textarea cols="30" rows="10" name="msg" id="msg" placeholder="Message.." required></textarea>
                         </div>
                         <div class="button-area">
-                            <button type="submit">Send message</button>
+                            <button type="submit" id="submit-btn" onmouseover="mouseOver()">Send message</button>
                         </div>
                     </form>
                     <span id="sendmsg"></span>
@@ -268,6 +270,71 @@
         </div>
     </section>
 
+    <script>
+        var a = 0;
+
+        function mouseOver() {
+
+            const name = document.forms['submit-to-google-sheet']['Name'].value;
+            const email = document.forms['submit-to-google-sheet']['email'].value;
+            const sub = document.forms['submit-to-google-sheet']['sub'].value;
+            const msg = document.forms['submit-to-google-sheet']['msg'].value;
+
+            const emailCheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+
+
+            if ((name == "" || !email.match(emailCheck) || sub == "" || msg == "") && a == 0) {
+                buttonMoveLeft();
+                a = 1;
+                return false;
+            }
+
+            if ((name == "" || !email.match(emailCheck) || sub == "" || msg == "") && a == 1) {
+                buttonMoveRight();
+                a = 2;
+                return false;
+            }
+
+            if ((name == "" || !email.match(emailCheck) || sub == "" || msg == "") && a == 2) {
+                buttonMoveLeft();
+                a = 1;
+                return false;
+            } else {
+
+                // document.getElementById('submit-btn').click();  
+                document.getElementById('submit-btn').style.cursor = 'pointer';
+                return false;
+            };
+
+        };
+
+
+
+
+        function buttonMoveLeft() {
+
+            const button = document.getElementById('submit-btn');
+            button.style.transform = 'translateX(240%)';
+
+        };
+
+
+        function buttonMoveRight() {
+
+            const button = document.getElementById('submit-btn');
+            button.style.transform = 'translateX(0%)';
+
+        };
+
+
+        function resetBtn() {
+            const button = document.getElementById('submit-btn');
+            button.style.transform = 'translateX(0%)';
+        };
+    </script>
+
+
     <!-- footer section start -->
     <footer>
         <span>Created By <a href="#">PrasadRM</a>
@@ -275,6 +342,8 @@
 
 
     <script src="script.js" ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js"></script>
 
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxiDfgRW2-kCrJtn5n0HyEYlTbV5Vdxcqz0aVmYNqv3S8v9bzH3K5uJrv6q3yewgOz-Vg/exec'
@@ -288,13 +357,14 @@
             sendmsg.innerHTML = "Message Sent Successfully"
             setTimeout( function() {
                 sendmsg.innerHTML = ""
-            },500)
+            },5000)
             form.reset()
         })
         .catch(error => console.error('Error!', error.sendmsg))
     })
 
     </script>
+   
 
 
 
