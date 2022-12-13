@@ -71,3 +71,85 @@ $(document).ready(function() {
         }
     });
 });
+
+// Button onmouse function
+
+var a = 0;
+
+function mouseOver() {
+
+    const name = document.forms['submit-to-google-sheet']['Name'].value;
+    const email = document.forms['submit-to-google-sheet']['email'].value;
+    const sub = document.forms['submit-to-google-sheet']['sub'].value;
+    const msg = document.forms['submit-to-google-sheet']['msg'].value;
+    const emailCheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+
+
+    if ((name == "" || !email.match(emailCheck) || sub == "" || msg == "") && a == 0) {
+        buttonMoveLeft();
+        a = 1;
+        return false;
+    }
+
+    if ((name == "" || !email.match(emailCheck) || sub == "" || msg == "") && a == 1) {
+        buttonMoveRight();
+        a = 2;
+        return false;
+    }
+
+    if ((name == "" || !email.match(emailCheck) || sub == "" || msg == "") && a == 2) {
+        buttonMoveLeft();
+        a = 1;
+        return false;
+    } else {
+
+        // document.getElementById('submit-btn').click();  
+        document.getElementById('submit-btn').style.cursor = 'pointer';
+        return false;
+    };
+
+};
+
+
+
+
+function buttonMoveLeft() {
+
+    const button = document.getElementById('submit-btn');
+    button.style.transform = 'translateX(238%)';
+
+};
+
+
+function buttonMoveRight() {
+
+    const button = document.getElementById('submit-btn');
+    button.style.transform = 'translateX(0%)';
+
+};
+
+
+function resetBtn() {
+    const button = document.getElementById('submit-btn');
+    button.style.transform = 'translateX(0%)';
+};
+
+//Button function
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxiDfgRW2-kCrJtn5n0HyEYlTbV5Vdxcqz0aVmYNqv3S8v9bzH3K5uJrv6q3yewgOz-Vg/exec'
+const form = document.forms['submit-to-google-sheet']
+const sendmsg = document.getElementById("sendmsg")
+
+form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+            sendmsg.innerHTML = "Message Sent Successfully"
+            setTimeout(function() {
+                sendmsg.innerHTML = ""
+            }, 5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.sendmsg))
+})

@@ -448,7 +448,7 @@ section .title::after {
 }
 
 .skills-content .right .js::before {
-    width: 20%;
+    width: 30%;
 }
 
 .skills-content .right .php::before {
@@ -816,6 +816,12 @@ footer span a:hover {
         width: 35px;
         font-size: 23px;
         line-height: 38px;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-area {
+        max-width: 100px;
     }
 }
 
