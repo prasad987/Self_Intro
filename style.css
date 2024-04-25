@@ -313,6 +313,10 @@ section .title::after {
 
 /* services section styling */
 
+a {
+    color: inherit; 
+}
+
 .services,
 .teams {
     color: #fff;
@@ -331,7 +335,8 @@ section .title::after {
 }
 
 .services .serv-content .card {
-    width: calc(33% - 20px);
+    width: 350px;
+    height: 300px;
     background: #222;
     text-align: center;
     border-radius: 6px;
