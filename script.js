@@ -140,9 +140,18 @@ function resetBtn() {
 const scriptURL = 'https://script.google.com/macros/s/AKfycbwlYG3y0YV8hWRjhVCtGAe0amY0u539EEQDvdLWRB24qhDrLb_6V12ZrctcpT3ucYPaig/exec'
 const form = document.forms['submit-to-google-sheet']
 const sendmsg = document.getElementById("sendmsg")
+const btnText = document.getElementById('btnText');
+const loadingSpinner = document.getElementById('loadingSpinner');
+
 
 form.addEventListener('submit', e => {
-    e.preventDefault()
+    e.preventDefault();
+
+    loadingSpinner.style.display = 'inline-block';
+
+    btnText.style.display = 'none';
+
+
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => {
             sendmsg.innerHTML = "Message Sent Successfully"
@@ -152,4 +161,9 @@ form.addEventListener('submit', e => {
             form.reset()
         })
         .catch(error => console.error('Error!', error.sendmsg))
-})
+        .finally(() => {
+            loadingSpinner.style.display = 'none';
+
+            btnText.style.display = 'inline-block';
+        });
+});
