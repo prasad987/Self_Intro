@@ -137,7 +137,8 @@ function resetBtn() {
 
 //Button function
 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzb42LF0Ky_qQCSTXyjrhYdAtAEShcbG8zf8PgmK5_GcX04Z_zA4m63cuU67pv-kNNhDg/exec'
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyQW97VwgJQlVifHjopN_NP9zaRVWPgmH3T7S3ILyyV2uDCHo1pBdgrvHh71EpHdSs/exec'
 const form = document.forms['submit-to-google-sheet']
 const sendmsg = document.getElementById("sendmsg")
 const btnText = document.getElementById('btnText');
