@@ -148,7 +148,7 @@ form.addEventListener('submit', e => {
             sendmsg.innerHTML = "Message Sent Successfully"
             setTimeout(function() {
                 sendmsg.innerHTML = ""
-            }, 500)
+            }, 5000)
             form.reset()
         })
         .catch(error => console.error('Error!', error.sendmsg))
